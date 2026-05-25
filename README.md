@@ -1,5 +1,3 @@
-# dataset-de-paises
-Repositorio del Trabajo Practico Integrador de Programación 1 - Tecnicatura Universitaria en Programación
 # Sistema de Gestión de Datos de Países
 
 Este proyecto es una aplicación diseñada para la gestión, visualización y análisis estadístico de un dataset de países. Permite realizar operaciones CRUD básicas, búsquedas avanzadas, filtros personalizados, ordenamiento de datos y cálculo de métricas estadísticas a partir de un archivo de datos estructurado (como un archivo CSV).
@@ -45,7 +43,7 @@ Genera un reporte analítico resumido con métricas clave del dataset:
     * mayor población 
     * menor población
     * Promedio general de población.
-    * Promedio general de superficie en $km^2$.
+    * Promedio general de superficie en km^2
     * Cantidad total de países registrados por cada continente.
 
 ---
