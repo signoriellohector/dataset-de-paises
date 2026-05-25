@@ -11,6 +11,7 @@
 
 
 # importación de módulos
+import manejo_dataset # Modulo de carga de dataset paises.csv
 
 
 # Función de petición de opción
@@ -27,6 +28,14 @@ def pedir_option()-> int:
 # Menu
 if __name__=='__main__':
     option = 0 # Variable de control del menu
+
+    # Carga de una lista de paises
+    # pais = { 'nombre':'Argentina',
+    # 'poblacion': 46200000,
+    # 'superficie': 3761274,
+    # 'continente': América}
+    
+    paises=manejo_dataset.cargar_paises()
 
     while option != 7:
         
