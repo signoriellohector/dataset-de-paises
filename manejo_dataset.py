@@ -10,6 +10,7 @@
 # Modulo de manejo del dataset paises.csv
 
 import csv
+#import busqueda
 
 # Función de creación de lista de diccionario de países
 def cargar_paises():
@@ -25,5 +26,12 @@ def cargar_paises():
     # retorno de una lista de diccionarios    
     return paises
 
+
+if __name__=='__main__':
 # Prueba de carga exitosa
-#print(cargar_paises())
+    paises= cargar_paises()
+    print(paises)
+
+# Test modulo de busqueda por nombre
+#    coincidencias = busqueda.busqueda_por_nombre(paises, 'brasil')
+#    print(f'\nbusqueda {coincidencias}')
