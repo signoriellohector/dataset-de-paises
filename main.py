@@ -11,7 +11,10 @@
 
 
 # importación de módulos
-import manejo_dataset # Modulo de carga de dataset paises.csv
+import os
+
+# Modulo de carga de dataset paises.csv
+import manejo_dataset 
 
 
 # Función de petición de opción
@@ -23,6 +26,9 @@ def pedir_option()-> int:
     except Exception as e:
         print(f'Error inesperado {e}')
     return 0
+
+def limpiar_pantalla():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 # Menu
@@ -52,7 +58,13 @@ if __name__=='__main__':
 
         match option:
             case 1: # Agregar un País
-                pass
+                    limpiar_pantalla()
+                    exito = manejo_dataset.agregar_pais(paises)
+
+                    if exito:
+                        print('Carga exitosa')
+                    else:
+                        print('Carga insatisfactoria')
 
             case 2: # Actualizar un País
                 pass
