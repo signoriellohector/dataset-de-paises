@@ -21,7 +21,7 @@ def busqueda_por_nombre(paises:list,nombre:str):
     
     # recorrido de lista hasta encontrar todas las coincidencias posibles
     for pais in paises:
-        if (pais['nombre'].lower()) == nombre:
+        if (pais['nombre'].strip().lower()) == nombre:
             coincidencias.append(pais)
 
     return coincidencias
