@@ -22,6 +22,9 @@ def cargar_paises():
 
         for fila in lector_dict:
             # carga de la lista fila a fila
+            # transformo poblacion y superficie de string a entero para poder trabajarlos correctamente
+            fila['poblacion'] = int(fila['poblacion'])
+            fila['superficie'] = int(fila['superficie'])
             paises.append(fila)
         
     # retorno de una lista de diccionarios    
