@@ -49,9 +49,10 @@ def crear_pais()->dict:
         # Verifica que el nombre no sea vació
         if not nombre.strip(): 
             # raise devuelve un ValueError ya que el nombre se encuentra vació
-            raise ValueError 
+            raise ValueError ('El nombre no puede estar vació, ' \
+            'por favor ingrese un nombre valido')
         if nombre[0].isdigit():
-            raise TypeError
+            raise ValueError('El nombre no puede comenzar con un numero')
         
         poblacion = input('Ingrese la población del país: ')
         superficie = input('Ingrese la superficie en km²: ')
@@ -60,14 +61,15 @@ def crear_pais()->dict:
             poblacion = int(poblacion)
             superficie = int(superficie)
         except ValueError:
-            raise TypeError
+            raise ValueError('Tipo de dato incorrecto')
 
         continente = input('Ingrese el continente: ')
         # Verifica que el continente no sea vació
         if not continente.strip():
-            raise ValueError
+            raise ValueError('El continente no puede estar vació, ' \
+            'por favor ingrese continente valido')
         if continente[0].isdigit():
-            raise TypeError
+            raise ValueError('El continente no puede comenzar con un numero')
         
         # creando diccionario país
         pais['nombre'] = nombre.capitalize()
@@ -76,27 +78,25 @@ def crear_pais()->dict:
         pais['continente'] = continente.capitalize()
         
 
-    except ValueError:
-        print('Error: los campos no pueden estar vacíos')
-    except TypeError:
-        print('Error: tipo de dato incorrecto')
+    except ValueError as e:
+        print(f'Error: {e}')
 
-    # retorna el diccionario pais sea que este vació o no
+    # retorna el diccionario país sea que este vació o no
     return pais
             
 
-# Función de Agregado de un país a la lista paises y al archivo paises.csv
+# Función de Agregado de un país a la lista países y al archivo paises.csv
 def agregar_pais(paises:list):
 # la función recibe una lista de diccionarios 
 
     # genera un diccionario vació el cual es un pais a crear
     pais = {}
     while not pais:
-        # se llama la funcion crear_pais(),
+        # se llama la función crear_pais(),
         # se le da la opción de seguir intentando crear un país valido
         pais = crear_pais()
         if not pais:
-            print('Desea reintentar ingrasar un país?\n' \
+            print('Desea reintentar ingresar un país?\n' \
                 '1. Si\n' \
                 '2. No')
             try:
@@ -110,10 +110,10 @@ def agregar_pais(paises:list):
             except ValueError:
                 print('Error: Opción invalida')
     
-    # se genera una lista con las cabezeras del archivo países.csv
+    # se genera una lista con las cabeceras del archivo países.csv
     columnas = ['nombre','poblacion','superficie','continente']
 
-    # se verifica que el pais no se encuentre listado en el dataset
+    # se verifica que el país no se encuentre listado en el dataset
     existe = busqueda.busqueda_por_nombre(paises,pais['nombre'])
 
     # de no existir el país se procede a agregarlo a la lista y al archivo paises.csv
@@ -128,7 +128,7 @@ def agregar_pais(paises:list):
 
         return True
     else:
-        print('Error: El País ya se encuentra listado')
+        raise RuntimeError('El País ya se encuentra listado')
     
 
 #Función Actualizar los datos de Población y Superficie de un País.
@@ -144,26 +144,26 @@ def actualizar_pais(paises: list):
     
     # si no existe mostramos error y salimos
     if coincidencias == []:
-        print('Error: el país no fue encontrado')
-        return False
+        # eleva un error de runtime para informar que el país no se encuentra
+        raise RuntimeError('el país no fue encontrado')
+    
     else:
-        # pedimos al usuario ingresar poblacion y superficie nueva, validamos que sea un numero
+        # pedimos al usuario ingresar población y superficie nueva, validamos que sea un numero
         try:
-            poblacion = int(input("Ingrese el nuevo dato de poblacion: "))
+            poblacion = int(input("Ingrese el nuevo dato de población: "))
             superficie = int(input("Ingrese el nuevo dato de superficie: "))
         except ValueError:
-            print("Ingrese un numero valido")
-            return False
+            raise ValueError("Ingrese un numero valido")
         if poblacion <= 0 or superficie <= 0:
-            print("Error: los valores deben ser mayores a cero")
-            return False
+            raise ValueError(" los valores deben ser mayores a cero")
+            
 
         # actualizamos los datos
         coincidencias[0]['poblacion'] = poblacion
         coincidencias[0]['superficie'] = superficie
         
         #abrimos el archivo en modo escritura para reemplazar.
-        with open('paises.csv', 'w', encoding='utf-8') as archivo:            
+        with open('paises.csv', 'w',newline='', encoding='utf-8') as archivo:            
             #objeto escritor
             escritor = csv.DictWriter(archivo, ['nombre','poblacion','superficie','continente'])
             #escribe la primera línea del csv
@@ -175,21 +175,35 @@ def actualizar_pais(paises: list):
         
 
 if __name__=='__main__':
-# Prueba de carga exitosa
-    paises= cargar_paises()
-    print(paises)
+    try:
+    # Prueba de carga exitosa
+        paises= cargar_paises()
+        #print(paises)
 
-# Test modulo de busqueda por nombre
-#    coincidencias = busqueda.busqueda_por_nombre(paises, 'brasil')
-#    print(f'\nbusqueda {coincidencias}')
+    # Test modulo de busqueda por nombre
+    #    coincidencias = busqueda.busqueda_por_nombre(paises, 'brasil')
+    #    print(f'\nbusqueda {coincidencias}')
 
-# Test función crear_pais
-#    pais = crear_pais()
-#    print(pais)
+    # Test función crear_pais
+    #    pais = crear_pais()
+    #    print(pais)
 
-# Test función agregar_pais
-    exito = agregar_pais(paises)
-    if exito:
-        print('Carga exitosa')
-    else:
-        print('Carga insatisfactoria')
+    # Test función agregar_pais
+        # exito = agregar_pais(paises)
+        # if exito:
+        #     print('Carga exitosa')
+        # else:
+        #     print('Carga insatisfactoria')
+
+    # Test función actualizar_pais
+        exito = actualizar_pais(paises)
+        if exito:
+            print('Actualización exitosa')
+        else:
+            print('Actualización insatisfactoria')
+
+    except ValueError as e:
+        print(f'Error: {e}')
+    except RuntimeError as e:
+        print(f'Error: {e}')
+
