@@ -16,9 +16,6 @@ import os
 # Modulo de carga de dataset paises.csv
 import manejo_dataset 
 
-# Modulo de actualización de países
-import actualizacion
-
 
 # Función de petición de opción
 def pedir_option()-> int:
@@ -71,7 +68,7 @@ if __name__=='__main__':
 
             case 2: # Actualizar un País
                 limpiar_pantalla()
-                actualizacion.actualizar_pais(paises)
+                manejo_dataset.actualizar_pais(paises)
 
 
             case 3: # Buscar un País por Nombre
