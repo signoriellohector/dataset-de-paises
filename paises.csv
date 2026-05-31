@@ -1,12 +1,12 @@
-nombre,poblacion,superficie,continente
-China,1425671000,9596961,Asia
-India,1428627663,3287263,Asia
-Estados Unidos,339996563,9833517,América
-Indonesia,277534122,1904569,Asia
-Pakistán,240485658,881912,Asia
-Nigeria,223800000,923768,África
-Brasil,216422446,8515767,América
-Bangladesh,172954319,147570,Asia
-Rusia,144444359,17098242,Europa
-México,128455567,1964375,América
-Argentina,45376763,2780400,América
+nombre,poblacion,superficie,continente
+China,1425671000,9596961,Asia
+India,1428627663,3287263,Asia
+Estados Unidos,339996563,9833517,América
+Indonesia,277534122,1904569,Asia
+Pakistán,240485658,881912,Asia
+Nigeria,223800000,923768,África
+Brasil,216422446,8515767,América
+Bangladesh,172954319,147570,Asia
+Rusia,144444359,17098242,Europa
+México,128455567,1964375,América
+Argentina,123,456,América
