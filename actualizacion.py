@@ -29,10 +29,17 @@ def actualizar_pais(paises: list):
         print('Error: el país no fue encontrado')
         return False
     else:
-        # pedimos al usuario ingresar poblacion y superficie nueva
-        poblacion = int(input("Ingrese el nuevo dato de poblacion: "))
-        superficie = int(input("Ingrese el nuevo dato de superficie: "))
-        
+        # pedimos al usuario ingresar poblacion y superficie nueva, validamos que sea un numero
+        try:
+            poblacion = int(input("Ingrese el nuevo dato de poblacion: "))
+            superficie = int(input("Ingrese el nuevo dato de superficie: "))
+        except ValueError:
+            print("Ingrese un numero valido")
+            return False
+        if poblacion <= 0 or superficie <= 0:
+            print("Error: los valores deben ser mayores a cero")
+            return False
+
         # actualizamos los datos
         coincidencias[0]['poblacion'] = poblacion
         coincidencias[0]['superficie'] = superficie
