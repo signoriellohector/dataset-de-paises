@@ -11,7 +11,7 @@
 
 
 def busqueda_por_nombre(paises:list,nombre:str):
-    # creacion de lista auxiliar
+    # creación de lista auxiliar
     coincidencias = [] 
 
     # Normalizando string
