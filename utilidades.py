@@ -25,13 +25,19 @@ def limpiar_pantalla():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def impresion_lista_paises(paises:list):
+# la función se encarga de la impresión en pantalla de una lista de países
+# sigue el siguiente formato:
+# País: 'nombre' | Población: 'poblacion' | Superficie: 'superficie' | Continente: 'continente'
+
     if paises == []:
         raise RuntimeError ('País no encontrado')
     for pais in paises:
+        # :>10 dejan espacio especifico para que las variables puedan usar, normalizando la impresión
         print(f'Pais: {pais['nombre']:>10} | Población: {pais['poblacion']:>10} | ' \
             f'Superficie: {pais['superficie']:<10} | Continente: {pais['continente']:<10}')
         
 def pedir_nombre()->str:
+# función auxiliar para la petición del nombre con su respectiva validación
 
     nombre = input('Ingrese el nombre del país: ')
     # Verifica que el nombre no sea vació

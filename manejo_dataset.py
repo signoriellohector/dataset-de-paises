@@ -47,7 +47,7 @@ def crear_pais()->dict:
 
 
     pais = {}
-    print('---- Creación de país ----')
+    print(f"{'='*5} Creación de país {'='*5}")
 
     try:
         nombre = utilidades.pedir_nombre()
