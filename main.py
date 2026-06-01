@@ -11,28 +11,22 @@
 
 
 # importación de módulos
-import os
+#import os
+
+# Modulo de funciones secundarias
+import utilidades
 
 # Modulo de carga de dataset paises.csv
 import manejo_dataset 
 
+# Modulo de busqueda
+import busqueda
 
-# Función de petición de opción
-def pedir_option()-> int:
-    try:
-        return int(input('opción: '))
-    except ValueError:
-        raise ValueError('opción invalida')
-    except Exception as e:
-        raise Exception(f'inesperado {e}')
-    return 0
-
-def limpiar_pantalla():
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 # Menu
 if __name__=='__main__':
+    utilidades.limpiar_pantalla()
     option = 0 # Variable de control del menu
 
     # Carga de una lista de paises
@@ -56,11 +50,11 @@ if __name__=='__main__':
             '6. Estadísticas de los Países\n' \
             '7. Salir')
         try:
-            option = pedir_option()
+            option = utilidades.pedir_option()
         
             match option:
                 case 1: # Agregar un País
-                        limpiar_pantalla()
+                        utilidades.limpiar_pantalla()
                         exito = manejo_dataset.agregar_pais(paises)
 
                         if exito:
@@ -69,16 +63,20 @@ if __name__=='__main__':
                             print('Carga insatisfactoria')
 
                 case 2: # Actualizar un País
-                    limpiar_pantalla()
+                    utilidades.limpiar_pantalla()
                     exito = manejo_dataset.actualizar_pais(paises)
 
                     if exito:
                         print('Actualización exitosa')
                     else:
                         print('Actualización insatisfactoria')
-                        
+
                 case 3: # Buscar un País por Nombre
-                    pass
+                    print(f"{'='*5} Buscar un país por nombre {'='*5}")
+                    utilidades.limpiar_pantalla()
+                    nombre_busqueda = utilidades.pedir_nombre()
+                    coincidencias = busqueda.busqueda_por_nombre_parcial(paises,nombre_busqueda)
+                    utilidades.impresion_lista_paises(coincidencias)
 
                 case 4: # Menu Filtrar Países
                     option_submenu = 0 #
@@ -89,7 +87,7 @@ if __name__=='__main__':
                             '2. Por Rango de Población\n' \
                             '3. Por Rango de Superficie\n' \
                             '4. Salir al menu principal')
-                        option_submenu = pedir_option()
+                        option_submenu = utilidades.pedir_option()
 
                         match option:
                             case 1: # Filtrado por continente
@@ -114,7 +112,7 @@ if __name__=='__main__':
                             '2. Por Población\n' \
                             '3. Por Superficie\n' \
                             '4. Salir al menu principal')
-                        option_submenu = pedir_option()
+                        option_submenu = utilidades.pedir_option()
 
                         match option_submenu:
                             case 1: # Ordenado por nombre
@@ -131,7 +129,7 @@ if __name__=='__main__':
                                         '2. Descendente (de mayor a menor)\n' \
                                         '3. Salir al menu anterior')
                                     
-                                    option_superficie = pedir_option()
+                                    option_superficie = utilidades.pedir_option()
 
                                     match option:
                                         case 1: # Ordenado Ascendente
@@ -163,7 +161,7 @@ if __name__=='__main__':
                             '4. Promedio generar de superficie en km²\n'\
                             '5. Cantidad total de países por continente\n' \
                             '6. Salir al menu principal')
-                        option_submenu = pedir_option()
+                        option_submenu = utilidades.pedir_option()
 
                         match option_submenu:
                             case 1: # País con Mayor Población
