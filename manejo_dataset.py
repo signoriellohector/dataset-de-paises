@@ -10,6 +10,11 @@
 # Modulo de manejo del dataset paises.csv
 
 import csv
+
+# Modulo de funciones secundarias
+import utilidades
+
+# Modulo de busqueda
 import busqueda
 
 # Función de creación de lista de diccionario de países
@@ -45,14 +50,7 @@ def crear_pais()->dict:
     print('---- Creación de país ----')
 
     try:
-        nombre = input('Ingrese el nombre del país: ')
-        # Verifica que el nombre no sea vació
-        if not nombre.strip(): 
-            # raise devuelve un ValueError ya que el nombre se encuentra vació
-            raise ValueError ('El nombre no puede estar vació, ' \
-            'por favor ingrese un nombre valido')
-        if nombre[0].isdigit():
-            raise ValueError('El nombre no puede comenzar con un numero')
+        nombre = utilidades.pedir_nombre()
         
         poblacion = input('Ingrese la población del país: ')
         superficie = input('Ingrese la superficie en km²: ')
@@ -137,7 +135,7 @@ def actualizar_pais(paises: list):
     # retorna True si la actualización fue exitosa, False si no
     
     print('---- Actualizar los datos de Población y Superficie de un País. ----')
-    nombre = input('Ingrese el nombre del país a actualizar: ')
+    nombre = utilidades.pedir_nombre()
 
     # buscamos el país en la lista
     coincidencias = busqueda.busqueda_por_nombre(paises, nombre)
