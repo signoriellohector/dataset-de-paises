@@ -33,7 +33,7 @@ def impresion_lista_paises(paises:list):
         raise RuntimeError ('País no encontrado')
     for pais in paises:
         # :>10 dejan espacio especifico para que las variables puedan usar, normalizando la impresión
-        print(f'Pais: {pais['nombre']:>10} | Población: {pais['poblacion']:>10} | ' \
+        print(f'Pais: {pais['nombre']:<20} | Población: {pais['poblacion']:>12} | ' \
             f'Superficie: {pais['superficie']:<10} | Continente: {pais['continente']:<10}')
         
 def pedir_nombre()->str:

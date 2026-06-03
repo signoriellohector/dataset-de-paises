@@ -22,6 +22,9 @@ import manejo_dataset
 # Modulo de busqueda
 import busqueda
 
+# Modulo de filtros
+import filtros
+
 
 
 # Menu
@@ -82,116 +85,151 @@ if __name__=='__main__':
                     option_submenu = 0 #
 
                     while option_submenu != 4:
-                        print(f"\n{'='*5} Filtrar Países {'='*5}\n")
-                        print('1. Por Continente\n' \
-                            '2. Por Rango de Población\n' \
-                            '3. Por Rango de Superficie\n' \
-                            '4. Salir al menu principal')
-                        option_submenu = utilidades.pedir_option()
+                        try:
+                            print(f"\n{'='*5} Filtrar Países {'='*5}\n")
+                            print('1. Por Continente\n' \
+                                '2. Por Rango de Población\n' \
+                                '3. Por Rango de Superficie\n' \
+                                '4. Salir al menu principal')
+                            option_submenu = utilidades.pedir_option()
 
-                        match option:
-                            case 1: # Filtrado por continente                           
-                                resultado_continente = filtros.filtrar_por_continente(paises)
-                                utilidades.impresion_lista_paises(resultado_continente)
+                            match option_submenu:
+                                case 1: # Filtrado por continente                           
+                                    resultado_continente = filtros.filtrar_por_continente(paises)
+                                    if resultado_continente:
+                                        utilidades.impresion_lista_paises(resultado_continente)
+                                    else:
+                                        print('No se encuentra ningún país listado en ese continente.')
 
-                            case 2: # Filtrado por rango de población
-                                resultado_por_rango = filtros.filtrar_por_rango_poblacion(paises)
-                                utilidades.impresion_lista_paises(resultado_por_rango)
+                                case 2: # Filtrado por rango de población
+                                    resultado_por_rango = filtros.filtrar_por_rango_poblacion(paises)
+                                    if resultado_por_rango:
+                                        utilidades.impresion_lista_paises(resultado_por_rango)
+                                    else:
+                                        print('No se encuentra ningún país en ese rango de población.')
 
-                            case 3: # Filtrado por rango de Superficie
-                                resultado_por_superficie = filtros.filtrar_por_rango_superficie(paises)
-                                utilidades.impresion_lista_paises(resultado_por_superficie)
+                                case 3: # Filtrado por rango de Superficie
+                                    resultado_por_superficie = filtros.filtrar_por_rango_superficie(paises)
+                                    if resultado_por_superficie:
+                                        utilidades.impresion_lista_paises(resultado_por_superficie)
+                                    else:
+                                        print('No se encuentra ningún país en ese rango de superficie.')
 
-                            case 4: # Salida al menu principal
-                                pass
-                            case _:
-                                print('Error: opción fuera de rango')
+                                case 4: # Salida al menu principal
+                                    pass
+                                case _:
+                                    raise ValueError('opción fuera de rango')
 
-                 case 5: # Menu Ordenar Países
+                        # manejo de errores dentro del bucle del menu 4            
+                        except ValueError as e:
+                            print(f'Error: {e}')
+                        except RuntimeError as e:
+                            print(f'Error: {e}')
+                        except Exception as e:
+                            print(f'Error: {e}')
+
+
+                case 5: # Menu Ordenar Países
                     option_submenu = 0
                     while option_submenu != 4:
-                        print(f"\n{'='*5} Ordenar Países {'='*5}\n")
-                        print('1. Por Nombre\n' \
-                            '2. Por Población\n' \
-                            '3. Por Superficie\n' \
-                            '4. Salir al menu principal')
-                        option_submenu = utilidades.pedir_option()
+                        try:
+                            print(f"\n{'='*5} Ordenar Países {'='*5}\n")
+                            print('1. Por Nombre\n' \
+                                '2. Por Población\n' \
+                                '3. Por Superficie\n' \
+                                '4. Salir al menu principal')
+                            option_submenu = utilidades.pedir_option()
 
-                        match option_submenu:
-                            case 1: # Ordenado por nombre
-                                pass
+                            match option_submenu:
+                                case 1: # Ordenado por nombre
+                                    pass
 
-                            case 2: # Ordenado por población
-                                pass
+                                case 2: # Ordenado por población
+                                    pass
 
-                            case 3: # SubMenu Ordenado por superficie
-                                option_superficie = 0
-                                while option_superficie != 3:
-                                    print(f"\n{'-'*2} Ordenar por Superficie {'-'*2}\n")
-                                    print('1. Ascendente (de menor a mayor)\n' \
-                                        '2. Descendente (de mayor a menor)\n' \
-                                        '3. Salir al menu anterior')
-                                    
-                                    option_superficie = utilidades.pedir_option()
+                                case 3: # SubMenu Ordenado por superficie
+                                    option_superficie = 0
+                                    while option_superficie != 3:
+                                        print(f"\n{'-'*2} Ordenar por Superficie {'-'*2}\n")
+                                        print('1. Ascendente (de menor a mayor)\n' \
+                                            '2. Descendente (de mayor a menor)\n' \
+                                            '3. Salir al menu anterior')
+                                        
+                                        option_superficie = utilidades.pedir_option()
 
-                                    match option:
-                                        case 1: # Ordenado Ascendente
-                                            pass
+                                        match option:
+                                            case 1: # Ordenado Ascendente
+                                                pass
 
-                                        case 2: # Ordenado Descendente
-                                            pass
+                                            case 2: # Ordenado Descendente
+                                                pass
 
-                                        case 3: # Salir al menu anterior
-                                            pass
+                                            case 3: # Salir al menu anterior
+                                                pass
 
-                                        case _:
-                                            print('Error: opción fuera de rango')
+                                            case _:
+                                                raise ValueError('opción fuera de rango')
 
-                            case 4: # Salida al menu principal
-                                pass
+                                case 4: # Salida al menu principal
+                                    pass
 
-                            case _:
-                                print('Error: opción fuera de rango')
+                                case _:
+                                    raise ValueError('opción fuera de rango')
+                        except ValueError as e:
+                            print(f'Error: {e}')
+                        except RuntimeError as e:
+                            print(f'Error: {e}')
+                        except Exception as e:
+                            print(f'Error: {e}')
+
 
 
                 case 6: # Menu Estadística de los Países
                     option_submenu = 0
                     while option_submenu != 6:
-                        print(f"\n{'='*5} Estadística de los Países {'='*5}\n")
-                        print('1. País Mayor Población\n' \
-                            '2. País Menor Población\n' \
-                            '3. Promedio general de población\n' \
-                            '4. Promedio generar de superficie en km²\n'\
-                            '5. Cantidad total de países por continente\n' \
-                            '6. Salir al menu principal')
-                        option_submenu = utilidades.pedir_option()
+                        try:
+                            print(f"\n{'='*5} Estadística de los Países {'='*5}\n")
+                            print('1. País Mayor Población\n' \
+                                '2. País Menor Población\n' \
+                                '3. Promedio general de población\n' \
+                                '4. Promedio generar de superficie en km²\n'\
+                                '5. Cantidad total de países por continente\n' \
+                                '6. Salir al menu principal')
+                            option_submenu = utilidades.pedir_option()
 
-                        match option_submenu:
-                            case 1: # País con Mayor Población
-                                pass
+                            match option_submenu:
+                                case 1: # País con Mayor Población
+                                    pass
 
-                            case 2: # País con Menor Población
-                                pass
+                                case 2: # País con Menor Población
+                                    pass
 
-                            case 3: # Promedio general de población
-                                pass
+                                case 3: # Promedio general de población
+                                    pass
 
-                            case 4: # Promedio general de superficie en km²
-                                pass
+                                case 4: # Promedio general de superficie en km²
+                                    pass
 
-                            case 5: # Cantidad total de países por continente
-                                pass
+                                case 5: # Cantidad total de países por continente
+                                    pass
 
-                            case 6: # Salir al menu principal
-                                pass
-                            case _:
-                                print('Error: opción fuera de rango')
+                                case 6: # Salir al menu principal
+                                    pass
+                                case _:
+                                    raise ValueError('opción fuera de rango')
+
+                        except ValueError as e:
+                            print(f'Error: {e}')
+                        except RuntimeError as e:
+                            print(f'Error: {e}')
+                        except Exception as e:
+                            print(f'Error: {e}')
 
                 case 7: # Salida del programa
                     pass
 
                 case _: 
-                    print('Error: opción fuera de rango')
+                    raise ValueError('opción fuera de rango')
         
         except ValueError as e:
             print(f'Error: {e}')
