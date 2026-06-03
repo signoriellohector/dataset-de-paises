@@ -25,6 +25,9 @@ import busqueda
 # Modulo de filtros
 import filtros
 
+# Modulo de ordenamiento
+import ordenamiento
+
 # ------------ Funciones Sub Menus ---------------
 def submenu_filtros(paises:list):
 # sub menu opción 4 filtrar países
@@ -125,10 +128,16 @@ def submenu_ordenamiento(paises:list):
 
             match option_submenu:
                 case 1: # Ordenado por nombre
-                    pass
+                    utilidades.limpiar_pantalla()
+                    print(f"{'*'*5} Ordenado por nombre {'*'*5}")
+                    paises_ordenados = ordenamiento.ordenamiento_nombre(paises)
+                    utilidades.impresion_lista_paises(paises_ordenados)
 
                 case 2: # Ordenado por población
-                    pass
+                    utilidades.limpiar_pantalla()
+                    print(f"{'*'*5} Ordenado por Población {'*'*5}")
+                    paises_ordenados = ordenamiento.ordenamiento_poblacion(paises)
+                    utilidades.impresion_lista_paises(paises_ordenados)
 
                 case 3: # SubMenu Ordenado por superficie
                     submenu_ascendente_descendente(paises)
