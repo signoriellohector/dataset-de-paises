@@ -105,7 +105,8 @@ if __name__=='__main__':
                             utilidades.impresion_lista_paises(resultado_por_rango)
 
                         case 3: # Filtrado por rango de Superficie
-                            pass
+                            resultado_por_superficie = filtros.filtrar_por_rango_superficie(paises)
+                            utilidades.impresion_lista_paises(resultado_por_superficie)
 
                         case 4: # Salida al menu principal
                             pass

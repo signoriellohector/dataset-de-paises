@@ -59,6 +59,32 @@ def filtrar_por_rango_poblacion(paises: list):
     return resultado
 
 #----------------------Funcion para filtrar por rango de superficie----------------------#
+# misma situacion cambiando de poblacion a superficie
 
 def filtrar_por_rango_superficie(paises: list):
-    pass
+
+    print('===== Filtrar por rango de superficie =====')
+
+    #creamos lista vacia para las coincidencias
+    resultado = []
+
+    #pido al usuario un minimo y un maximo de poblacion para filtrar, verifico que sea un numero si no corto la funcion con una lista vacia
+    try:
+        min_superficie = int(input("Ingrese el minimo de superficie: "))
+        max_superficie = int(input("Ingrese el maximo de superficie: "))
+    except ValueError:
+        print("Ingrese un numero valido")
+        return []
+    
+    #verifico que el minimo que ingresa no sea mayor que el maximo
+    if min_superficie > max_superficie:
+        print("ERROR: El minimo no puede ser mayor al maximo")
+        return []
+    
+    #recorro paises y verifico las opciones que estan en el rango
+    for pais in paises:
+        if min_superficie <= pais['superficie'] <= max_superficie:
+            resultado.append(pais)
+    
+    #retorno resultados
+    return resultado
