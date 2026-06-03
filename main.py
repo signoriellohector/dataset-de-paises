@@ -90,21 +90,24 @@ if __name__=='__main__':
                         option_submenu = utilidades.pedir_option()
 
                         match option:
-                            case 1: # Filtrado por continente
-                                pass
+                            case 1: # Filtrado por continente                           
+                                resultado_continente = filtros.filtrar_por_continente(paises)
+                                utilidades.impresion_lista_paises(resultado_continente)
 
                             case 2: # Filtrado por rango de población
-                                pass
+                                resultado_por_rango = filtros.filtrar_por_rango_poblacion(paises)
+                                utilidades.impresion_lista_paises(resultado_por_rango)
 
                             case 3: # Filtrado por rango de Superficie
-                                pass
+                                resultado_por_superficie = filtros.filtrar_por_rango_superficie(paises)
+                                utilidades.impresion_lista_paises(resultado_por_superficie)
 
                             case 4: # Salida al menu principal
                                 pass
                             case _:
                                 print('Error: opción fuera de rango')
 
-                case 5: # Menu Ordenar Países
+                 case 5: # Menu Ordenar Países
                     option_submenu = 0
                     while option_submenu != 4:
                         print(f"\n{'='*5} Ordenar Países {'='*5}\n")
