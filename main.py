@@ -96,13 +96,13 @@ if __name__=='__main__':
                     option_submenu = pedir_option()
 
                     match option_submenu:
-                        case 1: # Filtrado por continente
-                            
+                        case 1: # Filtrado por continente                           
                             resultado_continente = filtros.filtrar_por_continente(paises)
                             utilidades.impresion_lista_paises(resultado_continente)
 
                         case 2: # Filtrado por rango de población
-                            pass
+                            resultado_por_rango = filtros.filtrar_por_rango_poblacion(paises)
+                            utilidades.impresion_lista_paises(resultado_por_rango)
 
                         case 3: # Filtrado por rango de Superficie
                             pass
