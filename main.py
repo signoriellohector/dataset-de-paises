@@ -11,33 +11,22 @@
 
 
 # importación de módulos
-import os
+#import os
+
+# Modulo de funciones secundarias
+import utilidades
 
 # Modulo de carga de dataset paises.csv
 import manejo_dataset 
 
-# Modulo de filtros
-import filtros
+# Modulo de busqueda
+import busqueda
 
-# Modulo de utilidades
-import utilidades
-
-# Función de petición de opción
-def pedir_option()-> int:
-    try:
-        return int(input('opción: '))
-    except ValueError:
-        print('Error: opción invalida')
-    except Exception as e:
-        print(f'Error inesperado {e}')
-    return 0
-
-def limpiar_pantalla():
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 # Menu
 if __name__=='__main__':
+    utilidades.limpiar_pantalla()
     option = 0 # Variable de control del menu
 
     # Carga de una lista de paises
@@ -45,8 +34,10 @@ if __name__=='__main__':
     # 'poblacion': 46200000,
     # 'superficie': 3761274,
     # 'continente': América}
-    
-    paises=manejo_dataset.cargar_paises()
+    try:
+        paises=manejo_dataset.cargar_paises()
+    except FileNotFoundError:
+        print('Error: Archivo inexistente, por favor cree un archivo paises.csv en la raíz')
 
     while option != 7:
         
@@ -58,143 +49,153 @@ if __name__=='__main__':
             '5. Ordenar Países\n' \
             '6. Estadísticas de los Países\n' \
             '7. Salir')
+        try:
+            option = utilidades.pedir_option()
         
-        option = pedir_option()
+            match option:
+                case 1: # Agregar un País
+                        utilidades.limpiar_pantalla()
+                        exito = manejo_dataset.agregar_pais(paises)
 
-        match option:
-            case 1: # Agregar un País
-                    limpiar_pantalla()
-                    exito = manejo_dataset.agregar_pais(paises)
+                        if exito:
+                            print('Carga exitosa')
+                        else:
+                            print('Carga insatisfactoria')
+
+                case 2: # Actualizar un País
+                    utilidades.limpiar_pantalla()
+                    exito = manejo_dataset.actualizar_pais(paises)
 
                     if exito:
-                        print('Carga exitosa')
+                        print('Actualización exitosa')
                     else:
-                        print('Carga insatisfactoria')
+                        print('Actualización insatisfactoria')
 
-            case 2:
-                limpiar_pantalla()
-                exito = manejo_dataset.actualizar_pais(paises)
-                
-                if exito:
-                    print('Actualización exitosa')
-                else:
-                    print('Actualización insatisfactoria')
+                case 3: # Buscar un País por Nombre
+                    print(f"{'='*5} Buscar un país por nombre {'='*5}")
+                    utilidades.limpiar_pantalla()
+                    nombre_busqueda = utilidades.pedir_nombre()
+                    coincidencias = busqueda.busqueda_por_nombre_parcial(paises,nombre_busqueda)
+                    utilidades.impresion_lista_paises(coincidencias)
 
+                case 4: # Menu Filtrar Países
+                    option_submenu = 0 #
 
-            case 3: # Buscar un País por Nombre
-                pass
+                    while option_submenu != 4:
+                        print(f"\n{'='*5} Filtrar Países {'='*5}\n")
+                        print('1. Por Continente\n' \
+                            '2. Por Rango de Población\n' \
+                            '3. Por Rango de Superficie\n' \
+                            '4. Salir al menu principal')
+                        option_submenu = utilidades.pedir_option()
 
-            case 4: # Menu Filtrar Países
-                option_submenu = 0 #
+                        match option:
+                            case 1: # Filtrado por continente                           
+                                resultado_continente = filtros.filtrar_por_continente(paises)
+                                utilidades.impresion_lista_paises(resultado_continente)
 
-                while option_submenu != 4:
-                    print(f"\n{'='*5} Filtrar Países {'='*5}\n")
-                    print('1. Por Continente\n' \
-                        '2. Por Rango de Población\n' \
-                        '3. Por Rango de Superficie\n' \
-                        '4. Salir al menu principal')
-                    option_submenu = pedir_option()
+                            case 2: # Filtrado por rango de población
+                                resultado_por_rango = filtros.filtrar_por_rango_poblacion(paises)
+                                utilidades.impresion_lista_paises(resultado_por_rango)
 
-                    match option_submenu:
-                        case 1: # Filtrado por continente                           
-                            resultado_continente = filtros.filtrar_por_continente(paises)
-                            utilidades.impresion_lista_paises(resultado_continente)
+                            case 3: # Filtrado por rango de Superficie
+                                resultado_por_superficie = filtros.filtrar_por_rango_superficie(paises)
+                                utilidades.impresion_lista_paises(resultado_por_superficie)
 
-                        case 2: # Filtrado por rango de población
-                            resultado_por_rango = filtros.filtrar_por_rango_poblacion(paises)
-                            utilidades.impresion_lista_paises(resultado_por_rango)
+                            case 4: # Salida al menu principal
+                                pass
+                            case _:
+                                print('Error: opción fuera de rango')
 
-                        case 3: # Filtrado por rango de Superficie
-                            resultado_por_superficie = filtros.filtrar_por_rango_superficie(paises)
-                            utilidades.impresion_lista_paises(resultado_por_superficie)
+                 case 5: # Menu Ordenar Países
+                    option_submenu = 0
+                    while option_submenu != 4:
+                        print(f"\n{'='*5} Ordenar Países {'='*5}\n")
+                        print('1. Por Nombre\n' \
+                            '2. Por Población\n' \
+                            '3. Por Superficie\n' \
+                            '4. Salir al menu principal')
+                        option_submenu = utilidades.pedir_option()
 
-                        case 4: # Salida al menu principal
-                            pass
-                        case _:
-                            print('Error: opción fuera de rango')
+                        match option_submenu:
+                            case 1: # Ordenado por nombre
+                                pass
 
-            case 5: # Menu Ordenar Países
-                option_submenu = 0
-                while option_submenu != 4:
-                    print(f"\n{'='*5} Ordenar Países {'='*5}\n")
-                    print('1. Por Nombre\n' \
-                        '2. Por Población\n' \
-                        '3. Por Superficie\n' \
-                        '4. Salir al menu principal')
-                    option_submenu = pedir_option()
+                            case 2: # Ordenado por población
+                                pass
 
-                    match option_submenu:
-                        case 1: # Ordenado por nombre
-                            pass
+                            case 3: # SubMenu Ordenado por superficie
+                                option_superficie = 0
+                                while option_superficie != 3:
+                                    print(f"\n{'-'*2} Ordenar por Superficie {'-'*2}\n")
+                                    print('1. Ascendente (de menor a mayor)\n' \
+                                        '2. Descendente (de mayor a menor)\n' \
+                                        '3. Salir al menu anterior')
+                                    
+                                    option_superficie = utilidades.pedir_option()
 
-                        case 2: # Ordenado por población
-                            pass
+                                    match option:
+                                        case 1: # Ordenado Ascendente
+                                            pass
 
-                        case 3: # SubMenu Ordenado por superficie
-                            option_superficie = 0
-                            while option_superficie != 3:
-                                print(f"\n{'-'*2} Ordenar por Superficie {'-'*2}\n")
-                                print('1. Ascendente (de menor a mayor)\n' \
-                                    '2. Descendente (de mayor a menor)\n' \
-                                    '3. Salir al menu anterior')
-                                
-                                option_superficie = pedir_option()
+                                        case 2: # Ordenado Descendente
+                                            pass
 
-                                match option:
-                                    case 1: # Ordenado Ascendente
-                                        pass
+                                        case 3: # Salir al menu anterior
+                                            pass
 
-                                    case 2: # Ordenado Descendente
-                                        pass
+                                        case _:
+                                            print('Error: opción fuera de rango')
 
-                                    case 3: # Salir al menu anterior
-                                        pass
+                            case 4: # Salida al menu principal
+                                pass
 
-                                    case _:
-                                        print('Error: opción fuera de rango')
-
-                        case 4: # Salida al menu principal
-                            pass
-
-                        case _:
-                            print('Error: opción fuera de rango')
+                            case _:
+                                print('Error: opción fuera de rango')
 
 
-            case 6: # Menu Estadística de los Países
-                option_submenu = 0
-                while option_submenu != 6:
-                    print(f"\n{'='*5} Estadística de los Países {'='*5}\n")
-                    print('1. País Mayor Población\n' \
-                        '2. País Menor Población\n' \
-                        '3. Promedio general de población\n' \
-                        '4. Promedio generar de superficie en km²\n'\
-                        '5. Cantidad total de países por continente\n' \
-                        '6. Salir al menu principal')
-                    option_submenu = pedir_option()
+                case 6: # Menu Estadística de los Países
+                    option_submenu = 0
+                    while option_submenu != 6:
+                        print(f"\n{'='*5} Estadística de los Países {'='*5}\n")
+                        print('1. País Mayor Población\n' \
+                            '2. País Menor Población\n' \
+                            '3. Promedio general de población\n' \
+                            '4. Promedio generar de superficie en km²\n'\
+                            '5. Cantidad total de países por continente\n' \
+                            '6. Salir al menu principal')
+                        option_submenu = utilidades.pedir_option()
 
-                    match option_submenu:
-                        case 1: # País con Mayor Población
-                            pass
+                        match option_submenu:
+                            case 1: # País con Mayor Población
+                                pass
 
-                        case 2: # País con Menor Población
-                            pass
+                            case 2: # País con Menor Población
+                                pass
 
-                        case 3: # Promedio general de población
-                            pass
+                            case 3: # Promedio general de población
+                                pass
 
-                        case 4: # Promedio general de superficie en km²
-                            pass
+                            case 4: # Promedio general de superficie en km²
+                                pass
 
-                        case 5: # Cantidad total de países por continente
-                            pass
+                            case 5: # Cantidad total de países por continente
+                                pass
 
-                        case 6: # Salir al menu principal
-                            pass
-                        case _:
-                            print('Error: opción fuera de rango')
+                            case 6: # Salir al menu principal
+                                pass
+                            case _:
+                                print('Error: opción fuera de rango')
 
-            case 7: # Salida del programa
-                pass
+                case 7: # Salida del programa
+                    pass
 
-            case _: 
-                print('Error: opción fuera de rango')
+                case _: 
+                    print('Error: opción fuera de rango')
+        
+        except ValueError as e:
+            print(f'Error: {e}')
+        except RuntimeError as e:
+            print(f'Error: {e}')
+        except Exception as e:
+            print(f'Error: {e}')
