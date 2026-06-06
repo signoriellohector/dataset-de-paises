@@ -183,17 +183,14 @@ def submenu_estadisticas(paises:list):
             match option_submenu:
                 case 1: # País con Mayor Población
                     utilidades.limpiar_pantalla()
+                    # se obtiene una tupla con los pais de mayor y menor población
                     pais_mayor_poblacion, pais_menor_poblacion = estadisticas.Paises_mayor_menor_poblacion(paises)
+
+                    # se procede a visualizarlos en pantalla
                     print(f'País con mayor población')
-                    print(f'Pais: {pais_mayor_poblacion['nombre']:<20} | ' \
-                        f'Población: {pais_mayor_poblacion['poblacion']:>12} | ' \
-                        f'Superficie: {pais_mayor_poblacion['superficie']:>12} | ' \
-                        f'Continente: {pais_mayor_poblacion['continente']:<10}')
+                    utilidades.imprimir_pais(pais_mayor_poblacion)
                     print(f'País con menor población')
-                    print(f'Pais: {pais_menor_poblacion['nombre']:<20} | ' \
-                        f'Población: {pais_menor_poblacion['poblacion']:>12} | ' \
-                        f'Superficie: {pais_menor_poblacion['superficie']:>12} | ' \
-                        f'Continente: {pais_menor_poblacion['continente']:<10}')
+                    utilidades.imprimir_pais(pais_menor_poblacion)
 
                 case 2: # Promedio general de población
                     pass

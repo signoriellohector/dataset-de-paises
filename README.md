@@ -40,8 +40,7 @@ Permite reestructurar la presentación visual de la lista de países. El usuario
 ### 6. Mostrar Estadísticas del Dataset
 Genera un reporte analítico resumido con métricas clave del dataset:
 * **Criterios de reporte**  
-    * mayor población 
-    * menor población
+    * mayor población y menor población
     * Promedio general de población.
     * Promedio general de superficie en km^2
     * Cantidad total de países registrados por cada continente.

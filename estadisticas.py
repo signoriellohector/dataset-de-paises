@@ -9,7 +9,7 @@
 #
 # Modulo de estadísticas
 
-def Paises_mayor_menor_poblacion(paises:list, mayor=True)-> tuple:
+def Paises_mayor_menor_poblacion(paises:list)-> tuple:
     pais_mayor_poblacion = {}
     pais_menor_poblacion = {}
 
