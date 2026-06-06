@@ -173,7 +173,7 @@ def submenu_estadisticas(paises:list):
     while option_submenu != 5:
         try:
             print(f"\n{'='*5} Estadística de los Países {'='*5}\n")
-            print('1. País Mayor Población y Menor Población'
+            print('1. País Mayor Población y Menor Población\n'
                 '2. Promedio general de población\n' \
                 '3. Promedio generar de superficie en km²\n'\
                 '4. Cantidad total de países por continente\n' \
@@ -184,7 +184,7 @@ def submenu_estadisticas(paises:list):
                 case 1: # País con Mayor Población
                     utilidades.limpiar_pantalla()
                     # se obtiene una tupla con los pais de mayor y menor población
-                    pais_mayor_poblacion, pais_menor_poblacion = estadisticas.Paises_mayor_menor_poblacion(paises)
+                    pais_mayor_poblacion, pais_menor_poblacion = estadisticas.paises_mayor_menor_poblacion(paises)
 
                     # se procede a visualizarlos en pantalla
                     print(f'País con mayor población')
@@ -193,10 +193,16 @@ def submenu_estadisticas(paises:list):
                     utilidades.imprimir_pais(pais_menor_poblacion)
 
                 case 2: # Promedio general de población
-                    pass
+                    utilidades.limpiar_pantalla()
+                    poblacion_promedio = estadisticas.promedio_poblacion(paises)
+
+                    print(f'El promedio de población es: {poblacion_promedio:.2f}')
 
                 case 3: # Promedio general de superficie en km²
-                    pass
+                    utilidades.limpiar_pantalla()
+                    superficie_promedio = estadisticas.promedio_superficie(paises)
+
+                    print(f'El promedio de superficie es: {superficie_promedio:.2f}')
 
                 case 4: # Cantidad total de países por continente
                     pass

@@ -9,7 +9,7 @@
 #
 # Modulo de estadísticas
 
-def Paises_mayor_menor_poblacion(paises:list)-> tuple:
+def paises_mayor_menor_poblacion(paises:list)-> tuple:
     pais_mayor_poblacion = {}
     pais_menor_poblacion = {}
 
@@ -26,3 +26,27 @@ def Paises_mayor_menor_poblacion(paises:list)-> tuple:
             pais_menor_poblacion= pais
 
     return pais_mayor_poblacion, pais_menor_poblacion
+
+def promedio_poblacion(paises:list)-> float:
+# Función encargada de obtener el promedio de población
+    total_poblacion = 0
+    cantidad_paises = len(paises)
+
+    for pais in paises:
+        total_poblacion += pais['poblacion']
+
+    promedio = total_poblacion/cantidad_paises
+    return promedio
+
+def promedio_superficie(paises:list)-> float:
+# Función encargada de obtener el promedio de superficie
+    total_superficie = 0
+    cantidad_paises = len(paises)
+
+    for pais in paises:
+        total_superficie += pais['superficie']
+
+    promedio = total_superficie/cantidad_paises
+
+    return promedio
+
