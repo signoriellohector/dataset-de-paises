@@ -176,7 +176,7 @@ if __name__=='__main__':
     try:
     # Prueba de carga exitosa
         paises= cargar_paises()
-        #print(paises)
+        print(paises)
 
     # Test modulo de busqueda por nombre
     #    coincidencias = busqueda.busqueda_por_nombre(paises, 'brasil')

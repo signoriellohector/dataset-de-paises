@@ -81,6 +81,7 @@ def submenu_filtros(paises:list):
 
 def submenu_ascendente_descendente(paises:list):
 # submenu ordenamiento por superficie ascendente o descendente
+    # paises_ordenados = paises
 
     option_superficie = 0
     while option_superficie != 3:
@@ -92,12 +93,20 @@ def submenu_ascendente_descendente(paises:list):
             
             option_superficie = utilidades.pedir_option()
 
-            match option:
+            match option_superficie:
                 case 1: # Ordenado Ascendente
-                    pass
+                    utilidades.limpiar_pantalla()
+                    print(f"{'*'*5} Ordenamiento por Superficie Ascendente {'*'*5}")
+                    
+
+                    paises_ordenados = ordenamiento.ordenamiento_superficie(paises)
+                    utilidades.impresion_lista_paises(paises_ordenados)
 
                 case 2: # Ordenado Descendente
-                    pass
+                    utilidades.limpiar_pantalla()
+                    print(f"{'*'*5} Ordenamiento por Superficie Descendente {'*'*5}")
+                    paises_ordenados = ordenamiento.ordenamiento_superficie(paises, ascendente=False)
+                    utilidades.impresion_lista_paises(paises_ordenados)
 
                 case 3: # Salir al menu anterior
                     pass

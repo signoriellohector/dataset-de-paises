@@ -34,7 +34,7 @@ def impresion_lista_paises(paises:list):
     for pais in paises:
         # :>10 dejan espacio especifico para que las variables puedan usar, normalizando la impresión
         print(f'Pais: {pais['nombre']:<20} | Población: {pais['poblacion']:>12} | ' \
-            f'Superficie: {pais['superficie']:<10} | Continente: {pais['continente']:<10}')
+            f'Superficie: {pais['superficie']:>12} | Continente: {pais['continente']:<10}')
         
 def pedir_nombre()->str:
 # función auxiliar para la petición del nombre con su respectiva validación
