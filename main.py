@@ -188,10 +188,13 @@ def submenu_estadisticas(paises:list):
                     pais_mayor_poblacion, pais_menor_poblacion = estadisticas.paises_mayor_menor_poblacion(paises)
 
                     # se procede a visualizarlos en pantalla
-                    print(f'País con mayor población')
+                    print(f'{'_'*107}')
+                    print(f'\n| País con mayor población: ')
                     utilidades.imprimir_pais(pais_mayor_poblacion)
-                    print(f'País con menor población')
+                    print(f'{'_'*107}')
+                    print(f'\n| País con menor población:')
                     utilidades.imprimir_pais(pais_menor_poblacion)
+                    print(f'{'_'*107}')
 
                 case 2: # Promedio general de población
                     utilidades.limpiar_pantalla()
