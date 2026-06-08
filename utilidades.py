@@ -53,3 +53,12 @@ def pedir_nombre()->str:
         raise ValueError('El nombre no puede comenzar con un numero')
     
     return nombre
+
+def imprimir_continentes(continentes:dict):
+# Función encargada de la impresión del diccionario de continentes con la cantidad de países
+    print(f'| {'Continente':>10} | {'Países':>10} |')
+    print(f'{'-'*27}')
+    for continente, cantidad in continentes.items():
+        print(f'| {continente:<10} | {cantidad:>10} |')
+        print(f'{'-'*27}')
+        
