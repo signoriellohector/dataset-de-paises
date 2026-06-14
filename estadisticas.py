@@ -8,8 +8,11 @@
 # Grupo 72
 #
 # Modulo de estadísticas
+import utilidades
 
 def paises_mayor_menor_poblacion(paises:list)-> tuple:
+    utilidades.dataset_vacio(paises)
+
     pais_mayor_poblacion = {}
     pais_menor_poblacion = {}
 
@@ -31,6 +34,8 @@ def paises_mayor_menor_poblacion(paises:list)-> tuple:
 
 def promedio_poblacion(paises:list)-> float:
 # Función encargada de obtener el promedio de población
+    utilidades.dataset_vacio(paises)
+
     total_poblacion = 0
     cantidad_paises = len(paises)
 
@@ -42,6 +47,8 @@ def promedio_poblacion(paises:list)-> float:
 
 def promedio_superficie(paises:list)-> float:
 # Función encargada de obtener el promedio de superficie
+    utilidades.dataset_vacio(paises)
+
     total_superficie = 0
     cantidad_paises = len(paises)
 
@@ -54,6 +61,7 @@ def promedio_superficie(paises:list)-> float:
 
 def total_paises_continente(paises:list)-> dict:
 # Función encargada de obtener el recuento de paises por continente
+    utilidades.dataset_vacio(paises)
     # creacion de diccionario para almacenar los continentes listados
     paises_continente = {}
 

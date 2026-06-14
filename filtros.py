@@ -15,6 +15,7 @@ import utilidades
 #----------------------Funcion para filtrar por continente--------------------------------#
 
 def filtrar_por_continente(paises:list):
+    utilidades.dataset_vacio(paises)
     
     utilidades.limpiar_pantalla()
     print('===== Filtrar por Continentes =====\n')
@@ -39,6 +40,7 @@ def filtrar_por_continente(paises:list):
 #----------------------Funcion para filtrar por rango de poblacion-------------------------------#
 
 def filtrar_por_rango_poblacion(paises: list):
+    utilidades.dataset_vacio(paises)
     utilidades.limpiar_pantalla()
     print('===== Filtrar por rango de poblacion =====\n')
 
@@ -72,6 +74,7 @@ def filtrar_por_rango_poblacion(paises: list):
 # misma situación cambiando de población a superficie
 
 def filtrar_por_rango_superficie(paises: list):
+    utilidades.dataset_vacio(paises)
 
     utilidades.limpiar_pantalla()
     print('===== Filtrar por rango de superficie =====\n')

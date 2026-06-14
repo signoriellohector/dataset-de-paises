@@ -9,9 +9,13 @@
 #
 # Modulo de búsqueda
 import manejo_dataset
+import utilidades
 
 def busqueda_por_nombre(paises:list,nombre:str)->list:
+
+    utilidades.dataset_vacio(paises)
     # creación de lista auxiliar
+
     coincidencias = [] 
 
     # Normalizando string
@@ -28,6 +32,8 @@ def busqueda_por_nombre(paises:list,nombre:str)->list:
 
 
 def busqueda_por_nombre_parcial(paises:list, nombre:str)->list:
+    
+    utilidades.dataset_vacio(paises)
         # creación de lista auxiliar
     coincidencias = [] 
 
