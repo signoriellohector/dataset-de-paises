@@ -131,6 +131,8 @@ def agregar_pais(paises:list):
 
 #Función Actualizar los datos de Población y Superficie de un País.
 def actualizar_pais(paises: list):
+
+    utilidades.dataset_vacio(paises)
     # la función recibe la lista de países
     # retorna True si la actualización fue exitosa, False si no
     

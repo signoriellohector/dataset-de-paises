@@ -20,6 +20,12 @@ def pedir_option()-> int:
     except Exception as e:
         raise Exception(f'inesperado {e}')
 
+def dataset_vacio(paises:list):
+# Función encargada de verificar que el dataset no este vació
+
+    if paises == []:
+        raise RuntimeError('Dataset Vacio, ' \
+        'por favor utilize la opción 1 para cargar al menos un pais')
 
 def limpiar_pantalla():
     os.system('cls' if os.name == 'nt' else 'clear')
